@@ -25,11 +25,12 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            cd project-ml-microservice-kubernetes
             python3 -m venv venv
             . venv/bin/activate
             make install
             # Install hadolint
-            wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+            wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.18.0/hadolint-Linux-x86_64 &&\
             chmod +x /bin/hadolint
       - save_cache:
           paths:
@@ -40,5 +41,6 @@ jobs:
       - run:
         name: run lint
         command: |
+          cd project-ml-microservice-kubernetes
           . venv/bin/activate
           make lint
