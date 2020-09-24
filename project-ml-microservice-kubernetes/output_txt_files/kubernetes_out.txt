@@ -1,1 +1,31 @@
-<paste log output from Kubernetes-mediated prediction, here>
+$ minikube start
+😄  minikube v1.13.1 on Ubuntu 18.04
+✨  Automatically selected the docker driver
+👍  Starting control plane node minikube in cluster minikube
+🔥  Creating docker container (CPUs=2, Memory=6300MB) ...
+🐳  Preparing Kubernetes v1.19.2 on Docker 19.03.8 ...
+🔎  Verifying Kubernetes components...
+🌟  Enabled addons: default-storageclass, storage-provisioner
+
+❗  /usr/local/bin/kubectl is version 1.16.6-beta.0, which may have incompatibilites with Kubernetes 1.19.2.
+💡  Want kubectl v1.19.2? Try 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" by default
+
+
+$ ./make_prediction.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+
+
+$ ./run_kubernetes.sh
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+deployment.apps/udacity-boston-housing created
+NAME                                      READY   STATUS    RESTARTS   AGE
+udacity-boston-housing-6df7bf966c-x9k7n   1/1     Running   0          90s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
